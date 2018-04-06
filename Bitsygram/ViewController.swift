@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var imageView: UIImageView!
     var imagePicker = UIImagePickerController()
+    var images = [Data]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +25,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true)
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.imageView.image = selectedImage
+            self.images.append(UIImagePNGRepresentation(selectedImage)!)
+            collectionView?.reloadData()
         }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+        cell.imageView.image = UIImage(data: images[indexPath.item])
+        return cell
     }
 
     @IBAction func onLibraryButtonTapped(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
     }
-    
 }
 
