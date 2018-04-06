@@ -72,6 +72,16 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         return cell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let image = images.remove(at: sourceIndexPath.item)
+        images.insert(image, at: destinationIndexPath.item)
+        collectionView.reloadData()
+    }
+
     @IBAction func onLibraryButtonTapped(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
