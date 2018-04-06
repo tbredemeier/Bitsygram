@@ -38,11 +38,24 @@
                                                 <constraint firstAttribute="height" constant="150" id="zsm-Fy-f0e"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZg-q4-VNF">
+                                            <rect key="frame" x="125" y="150" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="3CM-tk-K1G"/>
+                                                <constraint firstAttribute="height" constant="25" id="A54-EY-Eex"/>
+                                            </constraints>
+                                            <state key="normal" image="UnLike"/>
+                                            <connections>
+                                                <action selector="onLikeButtonTapped:" destination="wJ2-Fv-01g" eventType="touchUpInside" id="7dZ-Cd-ufi"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="rZg-q4-VNF" firstAttribute="top" secondItem="wJ2-Fv-01g" secondAttribute="top" constant="150" id="4LO-8m-CdD"/>
                                     <constraint firstAttribute="trailing" secondItem="aUh-BV-3Ou" secondAttribute="trailing" id="7iy-Nu-u3e"/>
                                     <constraint firstItem="aUh-BV-3Ou" firstAttribute="leading" secondItem="wJ2-Fv-01g" secondAttribute="leading" id="KC0-vs-JKh"/>
+                                    <constraint firstAttribute="trailing" secondItem="rZg-q4-VNF" secondAttribute="trailing" id="WgA-Gu-WLG"/>
                                     <constraint firstItem="aUh-BV-3Ou" firstAttribute="top" secondItem="wJ2-Fv-01g" secondAttribute="top" id="vjc-7P-gcK"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="200"/>
@@ -91,4 +104,7 @@
             <point key="canvasLocation" x="265" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="UnLike" width="25" height="25"/>
+    </resources>
 </document>
