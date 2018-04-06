@@ -53,6 +53,11 @@
                         </cells>
                     </collectionView>
                     <navigationItem key="navigationItem" id="w0E-Hs-z78">
+                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="DBb-LA-ebF">
+                            <connections>
+                                <action selector="onCameraButtonTapped:" destination="BYZ-38-t0r" id="bNa-O7-EqM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Library" id="frf-Pd-8HS">
                             <connections>
                                 <action selector="onLibraryButtonTapped:" destination="BYZ-38-t0r" id="eeC-9l-Bxk"/>

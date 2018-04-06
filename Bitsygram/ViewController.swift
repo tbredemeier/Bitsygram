@@ -98,5 +98,12 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
     }
+    
+    @IBAction func onCameraButtonTapped(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true)
+        }
+    }
 }
 
