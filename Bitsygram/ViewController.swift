@@ -82,6 +82,18 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         collectionView.reloadData()
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Image Options", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.images.remove(at: indexPath.item)
+            collectionView.reloadData()
+        }
+        alert.addAction(deleteAction)
+        present(alert, animated: true)
+    }
+
     @IBAction func onLibraryButtonTapped(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true)
