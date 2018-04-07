@@ -12,7 +12,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 
     var imagePicker = UIImagePickerController()
     var fileURL: URL?
-    var images = [Data]() {
+    var images = [ImageData]() {
         didSet {
             writeToFile()
         }
@@ -34,7 +34,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true)
         if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            self.images.append(UIImagePNGRepresentation(selectedImage)!)
+            self.images.append(ImageData(image: UIImagePNGRepresentation(selectedImage)!, like: false, text: ""))
             collectionView?.reloadData()
         }
     }
@@ -57,7 +57,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     func readFromFile() {
         do {
             let data = try Data(contentsOf: fileURL!)
-            let images = try PropertyListDecoder().decode([Data].self, from: data)
+            let images = try PropertyListDecoder().decode([ImageData].self, from: data)
             self.images = images
             print("Successful readFromFile")
         }
@@ -68,7 +68,7 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        cell.imageView.image = UIImage(data: images[indexPath.item])
+        cell.imageView.image = UIImage(data: images[indexPath.item].image)
         return cell
     }
 
